@@ -8,10 +8,17 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
 `;
 
 const FormContainer = styled.div`
-    width: 300px;
+    width: 400px;
+    height: 300px;
+    padding: 16px;
+    border-radius: 3%;
+    box-shadow: -1px 1px 15px 11px rgba(0,0,0,0.42);
+    -webkit-box-shadow: -1px 1px 15px 11px rgba(0,0,0,0.42);
+    -moz-box-shadow: -1px 1px 15px 11px rgba(0,0,0,0.42);
 `;
 
 const Title = styled.h1`
@@ -41,6 +48,10 @@ const ErrorMessage = styled.p`
     color: red;
 `;
 
+const Form = styled.form`
+    width: 95%;
+`
+
 interface FormData {
     username: string;
     password: string;
@@ -64,13 +75,14 @@ const Login: React.FC = () => {
         <FormContainer>
             <Title>Login</Title>
             {message && <p>{message}</p>}
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <Form onSubmit={handleSubmit(onSubmit)}>
                 <Input {...register('username', { required: true })} placeholder="Username" />
                     {errors.username && <ErrorMessage>{errors.username.message}</ErrorMessage>}
                 <Input type="password" {...register('password', { required: true })} placeholder="Password" />
                     {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
                 <Button type="submit">Login</Button>
-            </form>
+                <p>Para cadastrar, entre em contato com <a href="">Irwing Corrêa</a></p>
+            </Form>
         </FormContainer>
     </Container>
     );
